@@ -1,6 +1,6 @@
 #+TITLE: Readme
 
- You will use the array bag code that we reviewed in the text book. This code is provided with this assignment. In this code I have added one new method to the class for you to use as a guide. You should remove all traces of the “doSomething” method in all the files.
+You will use the array bag code that we reviewed in the text book. This code is provided with this assignment. In this code I have added one new method to the class for you to use as a guide. You should remove all traces of the “doSomething” method in all the files.
 
 You will write 3 new methods in the ArrayBag class:
 1. bubbleSort - a method to sort the array in ascending order using the bubble sort

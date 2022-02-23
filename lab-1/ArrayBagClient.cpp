@@ -22,7 +22,7 @@ int main()
 	int initialValueCount{11};
 		
 	std::cout << "\nAdding positive integers to the bag:\n";
-	for (int i = 0; i < 11; ++i)
+	for (int i{0}; i < 11; ++i)
 		bag.add(items[i]);
 
 	printList(items, initialValueCount);
@@ -31,7 +31,7 @@ int main()
 	int selection{0};
 	// true when the user decides to quit
 	bool isDone{false};
-	// menu
+	//
 	bool autoDisplayContents{true};
 
 	do // while (!done)
@@ -92,7 +92,7 @@ int main()
 				// [[fallthrough]]; // explicit fallthrough (C++17)
 			default:
 				// Selection was invalid
-				std::cout << "Invalid selection. Please make another selection: ";
+				std::cout << "\nInvalid selection.\n";
 				autoDisplayContents = false;
 				break;
 		}
@@ -200,11 +200,13 @@ int makeSelection(const int& low, const int& high)
 	while (!(std::cin >> selection))
 	{
 		// clear fail bit && ignore extra characters
-		// and newlines left in input stream
+		// and newline left in input stream
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
-		std::cout << "Please enter an Integer: ";
+		std::cout << "Please enter a positive Integer: ";
 	}
+
+	std::cin.ignore(1000, '\n');
 
 	// verify the selection is within desired range
 	if (!(selection >= low && selection <= high))
