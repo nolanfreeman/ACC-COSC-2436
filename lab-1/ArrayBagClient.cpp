@@ -1,4 +1,10 @@
-//
+// Tag          ACC COSC-2436 - Lab 1
+// Author:      Nolan Freeman Abbott
+// Status:      Complete
+// Description: Provide a client interface to interact with an Bag class,
+// ------------ that allows the user to perform operations such as:
+// ------------ add, sort, search, and remove items, through an convienient
+// ------------ text based, command line interface.
 
 #include <climits> // INT_MAX
 #include <iostream> // std::cout, std::cin
@@ -6,12 +12,12 @@
 
 #include "ArrayBag.h" // ArrayBag<type>
 
-void addOption(ArrayBag<int>& bag);
-void findOption(ArrayBag<int>& bag, const bool& recursively=false);
+void menuADD(ArrayBag<int>& bag);
+void menuFIND(ArrayBag<int>& bag, const bool& recursively=false);
+void menuSORT(ArrayBag<int>& bag);
 int makeSelection(const int& low, const int& high);
 void printList(const int* list, const int& size);
 int promptOperation(const std::string& operation);
-void sortOption(ArrayBag<int>& bag);
 
 int main()
 {
@@ -59,7 +65,7 @@ int main()
 				break;
 			case 2:
 				// Add value to bag
-				addOption(bag);
+				menuADD(bag);
 				break;
 			case 3:
 				// Remove value from bag
@@ -71,15 +77,15 @@ int main()
 				break;
 			case 4:
 				// Find value in bag iteratively
-				findOption(bag, false); // false == !recursive
+				menuFIND(bag, false); // false == !recursive
 				break;
 			case 5:
 				// Find value in bag recursively
-				findOption(bag, true); // true == recursive
+				menuFIND(bag, true); // true == recursive
 				break;
 			case 6:
 				// Sort bag
-				sortOption(bag);
+				menuSORT(bag);
 				break;
 			case 7:
 				// quit
@@ -115,8 +121,17 @@ int main()
    
 }  // end main
 
-//
-void addOption(ArrayBag<int>& bag)
+// -----------------------------------------------------------------------------
+// Function: menuADD
+// Inputs:   - an =ArrayBag= object of type =int=
+//             that the user will append items to.
+// Outputs:  - Text to the user describing the state of the bag.
+//           - Values being appended to the =ArrayBag= object.
+// Purpose:  Facilite adding values to the =ArrayBag= object by:
+//           - Calling the function that prompts the user to insert a value.
+//           - Displaying output to the user about the results of this action.
+// -----------------------------------------------------------------------------
+void menuADD(ArrayBag<int>& bag)
 {
 	int value{promptOperation("ADD")};
 
@@ -135,8 +150,15 @@ void addOption(ArrayBag<int>& bag)
 	}
 }
 
-//
-void sortOption(ArrayBag<int>& bag)
+// -----------------------------------------------------------------------------
+// Function: menuSORT
+// Inputs:   - an =ArrayBag= object of type =int= that the user wants to sort.
+// Outputs:  - Text to the user describing the state of the bag.
+//           - A sorted =ArrayBag= object.
+// Purpose:  Conditionally sorting the =ArrayBag= object if it wasn't already,
+//           and Displaying output to the user about the results of this action.
+// -----------------------------------------------------------------------------
+void menuSORT(ArrayBag<int>& bag)
 {
 	// determine whether the bag was already sorted
 	bool wasSorted{bag.isSorted()};
@@ -153,8 +175,18 @@ void sortOption(ArrayBag<int>& bag)
 	std::cout << "Bag is" << (wasSorted ? " already " : " ") << "sorted.\n";
 }
 
-//
-void findOption(ArrayBag<int>& bag, const bool& recursively)
+// -----------------------------------------------------------------------------
+// Function: menuFIND
+// Inputs:   - an =ArrayBag= object of type =int= that the user wants to sort.
+//           - A boolean variable that determines the type of search:
+//             + TRUE  : recursive,
+//             + FALSE : iterative
+// Outputs:  - Text to the user detailing whether the value exists
+//             or not in the bag.
+// Purpose:  Conditionally do a recursive search on the bag if it is sorted,
+//           otherwise ask the user if they would like to do so now.
+// -----------------------------------------------------------------------------
+void menuFIND(ArrayBag<int>& bag, const bool& recursively)
 {
 	int valueToFind{};
 
@@ -167,7 +199,7 @@ void findOption(ArrayBag<int>& bag, const bool& recursively)
 
 		// 1 == yes; 2 == no
 		if (makeSelection(1, 2) == 1)
-			sortOption(bag);
+			menuSORT(bag);
 		else
 			std::cout << "\nNot sorting. Returning to main menu...\n";
 	}
@@ -190,7 +222,16 @@ void findOption(ArrayBag<int>& bag, const bool& recursively)
 	}
 }
 
-//
+// -----------------------------------------------------------------------------
+// Function: makeSelection
+// Inputs:   - A low and a high index, both of type =int=,
+//             denoting the minimum and maximum accepted values.
+//           - User input that will be checked to comply with the output format.
+// Outputs:  - An integer from the user that satisfies the low-high constraints.
+//           - =-1= if it is an integer, but not within range.
+// Purpose:  Get user input until it is in form of a number,
+//           returning it if it is in the range low-high, else -1.
+// -----------------------------------------------------------------------------
 int makeSelection(const int& low, const int& high)
 {
 	int selection{-1};
@@ -215,7 +256,13 @@ int makeSelection(const int& low, const int& high)
 	return selection;
 }
 
-//
+// -----------------------------------------------------------------------------
+// Function: promptOperation
+// Inputs:   The =std::string= text describing the menu action.
+// Outputs:  The output of the helper function =makeSelection()=.
+// Purpose:  An intermediary function to prompt the user for input in the form
+//           of any positive integer based on the supplied =operation= name.
+// -----------------------------------------------------------------------------
 int promptOperation(const std::string& operation)
 {
 	std::cout << "\nWhat value would you like to " << operation << "? ";
@@ -226,7 +273,14 @@ int promptOperation(const std::string& operation)
 	return makeSelection(1, INT_MAX);
 }
 
-//
+// -----------------------------------------------------------------------------
+// Function: printList
+// Inputs:   - The list integers to be printed.
+//           - The size of the list (=int=).
+// Outputs:  A formatted and printed list of all the values in said list.
+// Purpose:  The function that is called whenever the user needs to have a list
+//           of values printed in a formatted style.
+// -----------------------------------------------------------------------------
 void printList(const int* list, const int& size)
 {
 	std::cout << "{ ";
