@@ -1,7 +1,7 @@
-// Tag          ACC COSC-2436 - Lab 1
-// Author:      Nolan Freeman Abbott
-// Status:      Complete
-// Description: Provide a client interface to interact with an Bag class,
+// TITLE        ACC COSC-2436 - Lab 1
+// AUTHOR:      Nolan Freeman Abbott
+// STATUS:      Complete
+// DESCRIPTION: Provide a client interface to interact with an Bag class,
 // ------------ that allows the user to perform operations such as:
 // ------------ add, sort, search, and remove items, through an convienient
 // ------------ text based, command line interface.
@@ -193,7 +193,7 @@ void menuFIND(ArrayBag<int>& bag, const bool& recursively)
 		else
 			found = (bag.binarySearchIterative(valueToFind) != -1);
 
-		std::cout << "The value " << valueToFind
+		std::cout << "\nThe value " << valueToFind
 				  << (found ? " is " : " is not ")
 				  << "in the bag.\n";
 	} // end if
