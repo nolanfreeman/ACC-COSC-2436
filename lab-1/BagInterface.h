@@ -7,19 +7,48 @@ template <class ItemType>
 class BagInterface
 {
 public:
-	// Example of adding a new method
+	// -----------------------------------------------------------------------------
+	// Function: bubbleSort
+	// Inputs:   None
+	// Outputs:  Nothing returned, but modifies the list contents of the bag.
+	// Purpose:  Perform a bubble sort on the list values within the bag.
+	// -----------------------------------------------------------------------------
 	virtual void bubbleSort() = 0;
 
-	// Example of adding a new method
+	// -----------------------------------------------------------------------------
+	// Function: binarySearchIterative
+	// Inputs:   A =value= to search for.
+	// Outputs:  The index that the value was found at, else =-1=.
+	// Purpose:  Iteratively do a binary search on the values stored in the Bag.
+	// -----------------------------------------------------------------------------
 	virtual int binarySearchIterative(const ItemType& value) const = 0;
 
-	// Example of adding a new method
+	// -----------------------------------------------------------------------------
+	// Function: binarySearchRecursive
+	// Inputs:   A =value= to search for.
+	// Outputs:  The output of binarySearchRecurisveHelper().
+	// Purpose:  A function to abstract details away from the user,
+	//           and calls its helper function to do the work.
+	// -----------------------------------------------------------------------------
 	virtual int binarySearchRecursive(const ItemType& value) const = 0;
 
-	// Example of adding a new method
+	// -----------------------------------------------------------------------------
+	// Function: binarySearchRecursiveHelper
+	// Inputs:   - A =value= to search for.
+	//           - integers denoting the left and right boundaries, and midpoint of
+	//             the Bags list of values.
+	// Outputs:  The index that the value was found at, else =-1=.
+	// Purpose:  Recursively do a binary search on the values stored in the Bag.
+	// -----------------------------------------------------------------------------
 	virtual int binarySearchRecursiveHelper(const ItemType& value, int& leftBound, int& rightBound, int& midpoint) const = 0;
 
-	// Example of adding a new method
+	// -----------------------------------------------------------------------------
+	// Function: isSorted
+	// Inputs:   None
+	// Outputs:  Boolean; stating whether the bag is currently sorted or not.
+	// Purpose:  An accessor method that only returns the variable of the Bag
+	//           class that says whether it is sorted or not.
+	// -----------------------------------------------------------------------------
 	virtual bool isSorted() const = 0;
 
 	// Gets the current number of entries in this bag.

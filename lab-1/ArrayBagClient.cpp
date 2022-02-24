@@ -101,7 +101,7 @@ int main()
 				std::cout << "\nInvalid selection.\n";
 				autoDisplayContents = false;
 				break;
-		}
+		} // end if
 
 		if (autoDisplayContents)
 		{
@@ -109,7 +109,7 @@ int main()
 			// used like a normal list since values are stored
 			// contiguously in memory
 			printList(&bag.toVector()[0], bag.getCurrentSize());
-		}
+		} // end if
 
 		// reset the value to true,
 		// in the event of an invalid selection
@@ -143,37 +143,13 @@ void menuADD(ArrayBag<int>& bag)
 	}
 	else
 	{
+		// if the bag was able to be added.
 		if (bag.add(value))
 			std::cout << "Value Added.\n";
 		else
 			std::cout << "Value not added. Bag is full.\n";
-	}
-}
-
-// -----------------------------------------------------------------------------
-// Function: menuSORT
-// Inputs:   - an =ArrayBag= object of type =int= that the user wants to sort.
-// Outputs:  - Text to the user describing the state of the bag.
-//           - A sorted =ArrayBag= object.
-// Purpose:  Conditionally sorting the =ArrayBag= object if it wasn't already,
-//           and Displaying output to the user about the results of this action.
-// -----------------------------------------------------------------------------
-void menuSORT(ArrayBag<int>& bag)
-{
-	// determine whether the bag was already sorted
-	bool wasSorted{bag.isSorted()};
-
-	if (!wasSorted)
-	{
-		std::cout << "\nSorting bag...\n";
-		// sets bag::isBagSorted to true
-	    bag.bubbleSort();
-		std::cout << "Done. ";
-	}
-
-	// let the user know if it was already sorted, or not
-	std::cout << "Bag is" << (wasSorted ? " already " : " ") << "sorted.\n";
-}
+	} // end if
+} // end menuADD
 
 // -----------------------------------------------------------------------------
 // Function: menuFIND
@@ -202,7 +178,7 @@ void menuFIND(ArrayBag<int>& bag, const bool& recursively)
 			menuSORT(bag);
 		else
 			std::cout << "\nNot sorting. Returning to main menu...\n";
-	}
+	} // end if
 
 	if (bag.isSorted())
 	{
@@ -211,6 +187,7 @@ void menuFIND(ArrayBag<int>& bag, const bool& recursively)
 		bool found{};
 
 		// search methods return -1 is value not found
+		// index returned from them, if not -1, is irrelevent for this assignment
 		if (recursively)
 			found = (bag.binarySearchRecursive(valueToFind) != -1);
 		else
@@ -219,8 +196,33 @@ void menuFIND(ArrayBag<int>& bag, const bool& recursively)
 		std::cout << "The value " << valueToFind
 				  << (found ? " is " : " is not ")
 				  << "in the bag.\n";
-	}
-}
+	} // end if
+} //end menuFIND
+
+// -----------------------------------------------------------------------------
+// Function: menuSORT
+// Inputs:   - an =ArrayBag= object of type =int= that the user wants to sort.
+// Outputs:  - Text to the user describing the state of the bag.
+//           - A sorted =ArrayBag= object.
+// Purpose:  Conditionally sorting the =ArrayBag= object if it wasn't already,
+//           and Displaying output to the user about the results of this action.
+// -----------------------------------------------------------------------------
+void menuSORT(ArrayBag<int>& bag)
+{
+	// determine whether the bag was already sorted
+	bool wasSorted{bag.isSorted()};
+
+	if (!wasSorted)
+	{
+		std::cout << "\nSorting bag...\n";
+		// sets bag::isBagSorted to true
+	    bag.bubbleSort();
+		std::cout << "Done. ";
+	} // end if
+
+	// let the user know if it was already sorted, or not
+	std::cout << "Bag is" << (wasSorted ? " already " : " ") << "sorted.\n";
+} // end menuSORT
 
 // -----------------------------------------------------------------------------
 // Function: makeSelection
@@ -245,7 +247,7 @@ int makeSelection(const int& low, const int& high)
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		std::cout << "Please enter a positive Integer: ";
-	}
+	} // end while
 
 	std::cin.ignore(1000, '\n');
 
@@ -254,7 +256,29 @@ int makeSelection(const int& low, const int& high)
 		selection = -1;
 
 	return selection;
-}
+} // end makeSelection
+
+// -----------------------------------------------------------------------------
+// Function: printList
+// Inputs:   - The list integers to be printed.
+//           - The size of the list in parameter 1 (=int=).
+// Outputs:  A formatted and printed list of all the values in said list.
+// Purpose:  The function that is called whenever the user needs to have a list
+//           of values printed in a formatted style.
+// -----------------------------------------------------------------------------
+void printList(const int* list, const int& size)
+{
+	std::cout << "{ ";
+
+	for (int i{0}; i < size; ++i)
+	{
+		// print each value of the list conditionally
+		// adding ", " if value is not the last value
+		std::cout << list[i] << ( i < size-1 ? ", " : "");
+	} // end for
+
+	std::cout << " }\n";
+} // end printList
 
 // -----------------------------------------------------------------------------
 // Function: promptOperation
@@ -271,26 +295,4 @@ int promptOperation(const std::string& operation)
 	// that a signed integer can hold
 	// (determined by computers architecture)
 	return makeSelection(1, INT_MAX);
-}
-
-// -----------------------------------------------------------------------------
-// Function: printList
-// Inputs:   - The list integers to be printed.
-//           - The size of the list (=int=).
-// Outputs:  A formatted and printed list of all the values in said list.
-// Purpose:  The function that is called whenever the user needs to have a list
-//           of values printed in a formatted style.
-// -----------------------------------------------------------------------------
-void printList(const int* list, const int& size)
-{
-	std::cout << "{ ";
-
-	for (int i{0}; i < size; ++i)
-	{
-		// print each value of the list conditionally
-		// adding ", " if value is not the last value
-		std::cout << list[i] << ( i < size-1 ? ", " : "");
-	}
-
-	std::cout << " }\n";
-}
+} // end promptOperation

@@ -11,7 +11,7 @@ private:
 	ItemType items[DEFAULT_CAPACITY];       // Array of bag items
 	int itemCount;                          // Current count of bag items
 	int maxItems;                           // Max capacity of the bag
-	bool isBagSorted;
+	bool isBagSorted;                       // is the bag currently sorted
    
 	// Returns either the index of the element in the array items that
 	// contains the given target or -1, if the array does not contain 
@@ -21,11 +21,11 @@ private:
 public:
 	ArrayBag();
 
-	void bubbleSort();
+	bool isSorted() const;
 	int binarySearchIterative(const ItemType& value) const;
 	int binarySearchRecursive(const ItemType& value) const;
 	int binarySearchRecursiveHelper(const ItemType& value, int& leftBound, int& rightBound, int& midpoint) const;
-	bool isSorted() const;
+	void bubbleSort();
 
 	int getCurrentSize() const;
 	bool isEmpty() const;
