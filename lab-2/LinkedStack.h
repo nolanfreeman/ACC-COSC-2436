@@ -25,7 +25,7 @@ class LinkedStack : public StackInterface<ItemType>
         bool pop();
         ItemType peek() const;
 
-        LinkedStack<ItemType>* operator=(const LinkedStack<ItemType>& aStack);
+        LinkedStack<ItemType>& operator=(const LinkedStack<ItemType>& aStack);
 
 }; // end LinkedStack
 

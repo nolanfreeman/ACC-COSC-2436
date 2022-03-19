@@ -111,9 +111,9 @@ bool LinkedStack<ItemType>::isEmpty() const
 }  // end isEmpty
 
 template<class ItemType>
-LinkedStack<ItemType>* LinkedStack<ItemType>::operator=(const LinkedStack<ItemType>& aStack)
+LinkedStack<ItemType>& LinkedStack<ItemType>::operator=(const LinkedStack<ItemType>& aStack)
 {
-    return this;
+    return *this;
 }
 
 // End of implementation file.
