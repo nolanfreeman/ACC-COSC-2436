@@ -12,7 +12,7 @@
 #include "LinkedStack.h"
 
 int main() {
-    LinkedStack<int>* stack = new LinkedStack<int>();
+    LinkedStack<int> stack;
 
     std::string filename;
     std::ifstream file;
@@ -42,17 +42,15 @@ int main() {
     int bid{0};
     while(file >> bid)
     {
-        if (stack->isEmpty() || bid > stack->peek())
-            stack->push(bid);
+        if (stack.isEmpty() || bid > stack.peek())
+            stack.push(bid);
     } // end while
 
     // print the value of the last added entry, which will always be the largest.
-    std::cout << auctionTitle << " sold for $" << stack->peek() << '\n';
+    std::cout << auctionTitle << " sold for $" << stack.peek() << '\n';
 
     // clean up files and dynamic memory
     file.close();
-    delete stack;
-    stack = nullptr;
 
     return 0;
 } // end main
