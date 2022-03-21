@@ -9,7 +9,7 @@ You can find all of this code in the Chapter 4, 6, 7 source code file available 
 
 I attached an input file to use as an example - auctions.txt
 
-#+begin_src text :tangle ./auction.txt
+#+begin_src text :tangle ./auctions.txt
 Valuable Ancient Item
 50
 24
