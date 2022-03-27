@@ -153,6 +153,7 @@ bool ArrayBag<ItemType>::remove(const ItemType& anEntry)
 	{
 		itemCount--;
 		items[locatedIndex] = items[itemCount];
+        isBagSorted = false;
 	}  // end if
     
 	return canRemoveItem;
