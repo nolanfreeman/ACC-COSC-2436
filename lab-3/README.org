@@ -34,14 +34,14 @@ You will have the following public methods:
 
 * Client program
 
-Your program will ask the user for the file name, open the text file , read each line and invoke the addNode method.  Make sure the file opened correctly before you start processing it. You do not know how many lines are in the file so your program should read until it gets to the end of the file.
+Your program will ask the user for the file name, open the text file, read each line and invoke the addNode method.  Make sure the file opened correctly before you start processing it. You do not know how many lines are in the file so your program should read until it gets to the end of the file.
 
-It will display the contents of the list (the lines that were read from the file in sorted order with no duplicates) using the LinkedList class method =toVector= that puts all of the lines into a vector and returns it to the program that will display it.
+It will display the contents of the list (the lines that were read from the file in sorted order with no duplicates) using the =LinkedList= class method =toVector= that puts all of the lines into a vector and returns it to the program that will display it.
 
 Your client program will do the following:
 - Read file name from user
-- Display the number of lines that were read out of the file and were passed to the addNode method.
-- Display the lines in your linked list using the class method toVector to get the lines.
+- Display the number of lines that were read out of the file and were passed to the =addNode= method.
+- Display the lines in your linked list using the class method =toVector= to get the lines.
 - Display the number of lines in the vector.
 - I have attached three files you can use to test your program. Blackboard handles files in a strange way sometimes. You may not be able to directly download the files, but you can open them, copy and paste the contents into a notepad file and save that file.
 - You will write all of the code for processing the linked list - do not use any predefined objects in C++.  You do not need to offer a user interface – simply display the number of lines read from the file, the list using the =toVector= method and the number of lines in the vector.
