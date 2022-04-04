@@ -10,11 +10,11 @@
 #include <string> // string
 #include <vector> // vector<T>
 
-#include "LinkedList" // LinkedList<T>
+#include "LinkedList.h" // LinkedList<T>
 
 int main() {
 
-    ifstream file;           // file stream object to retrieve data
+    std::ifstream file;           // file stream object to retrieve data
     std::string filename {}; // user inputted filename
 
     bool validFile {false};  // loop termination flag
@@ -23,10 +23,10 @@ int main() {
     while (!validFile)
     {
         // get user input of a name of the file
-        std::getline(filename);
+        std::getline(std::cin, filename);
 
         // attempt to open the file
-        file.open(filename)
+        file.open(filename);
 
         // if the file cannot be opened
         if (!file)
@@ -48,7 +48,7 @@ int main() {
     int lineCount {0};   // number of lines read from input
 
     // while there are still bytes to read within the file
-    while (file != EOF)
+    while (!file.eof())
     {
         // get the next line from the file
         std::getline(file, line);
@@ -80,7 +80,7 @@ int main() {
 
     // show how many nodes were found in the list,
     // compared to how many were initially read in
-    std::cout << list.numItems << " unique nodes printed from "
+    std::cout << list.getNumItems() << " unique nodes printed from "
               << lineCount << " lines of input.";
 
     // clean up file object
