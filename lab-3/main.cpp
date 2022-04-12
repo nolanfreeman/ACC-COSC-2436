@@ -14,7 +14,7 @@
 
 int main() {
 
-    std::ifstream file;           // file stream object to retrieve data
+    std::ifstream file;      // file stream object to retrieve data
     std::string filename {}; // user inputted filename
 
     bool validFile {false};  // loop termination flag
@@ -23,6 +23,7 @@ int main() {
     while (!validFile)
     {
         // get user input of a name of the file
+        std::cout << "Enter the name of a file to parse: ";
         std::getline(std::cin, filename);
 
         // attempt to open the file
@@ -30,7 +31,7 @@ int main() {
 
         // if the file cannot be opened
         if (!file)
-            std::cout << "File: \"" << filename << "\" could not be found." << '\n';
+            std::cout << "File: \"" << filename << "\" could not be found." << "\n" << '\n';
         else
             validFile = true;
 
@@ -38,7 +39,7 @@ int main() {
     }
 
     // List ADT to hold input values
-    LinkedList<std::string> list;
+    LinkedList list;
 
     // --------------------------
     // begin reading file values
@@ -60,8 +61,8 @@ int main() {
     }
 
     // show how many lines were found in the file
-    std::cout << "Parsed file: \"" << filename
-              << "\" containing " << lineCount << " lines." << '\n';
+    std::cout << "\nParsed file \"" << filename
+              << "\" containing " << lineCount << " lines." << '\n' << '\n';
 
     // ----------------------
     // begin displaying data
@@ -80,7 +81,7 @@ int main() {
 
     // show how many nodes were found in the list,
     // compared to how many were initially read in
-    std::cout << list.getNumItems() << " unique nodes printed from "
+    std::cout << '\n' << list.getNumItems() << " unique nodes printed from "
               << lineCount << " lines of input.";
 
     // clean up file object
