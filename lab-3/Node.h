@@ -12,7 +12,6 @@ class Node
     public:
         Node() = delete;
         Node(std::string line, Node* next);
-        virtual ~Node();
 
         Node* getNext() const;
         std::string getValue() const;

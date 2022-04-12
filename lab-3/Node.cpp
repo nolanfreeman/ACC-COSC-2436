@@ -6,11 +6,6 @@ Node::Node(std::string line, Node* next=nullptr)
     : line(line), next(next)
 { }
 
-Node::~Node()
-{
-    delete next;
-}
-
 Node* Node::getNext() const
 {
     return next;
