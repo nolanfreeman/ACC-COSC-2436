@@ -48,12 +48,9 @@ int main() {
     std::string line {}; // intermediary input values
     int lineCount {0};   // number of lines read from input
 
-    // while there are still bytes to read within the file
-    while (!file.eof())
+    // while getline still can read a line
+    while (std::getline(file, line))
     {
-        // get the next line from the file
-        std::getline(file, line);
-
         // append value to list
         list.addNode(line);
         // increment number of lines read
