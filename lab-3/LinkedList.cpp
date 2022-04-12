@@ -10,11 +10,16 @@ LinkedList::LinkedList()
 
 LinkedList::~LinkedList()
 {
+    // while there are still nodes to delete
     while (headPtr != nullptr)
     {
+        // current node to delete
         Node* del {headPtr};
+        // next node to delete
         headPtr = headPtr->getNext();
 
+        // cautiously set the deleted ptr's next to null
+        // and delete it
         del->setNext(nullptr);
         delete del;
     }
@@ -23,10 +28,17 @@ LinkedList::~LinkedList()
     headPtr = nullptr;
 }
 
+// addNode -> bool
+//
+// add a node to the linked list chain
+// while maintaining a sorted state
+// returns True when node was able to add
 bool LinkedList::addNode(const std::string& valueToInsert)
 {
     bool isDuplicate {false};
 
+    // if the list is empty
+    // create a new node at head
     if (numItems == 0)
     {
         headPtr = new Node(valueToInsert);
@@ -37,28 +49,34 @@ bool LinkedList::addNode(const std::string& valueToInsert)
         Node* curr {headPtr};
         Node* prev {nullptr};
 
+        // while not at end of chain
+        // or insert index isn't found yet
+        // continue iterating though nodes
         while (curr != nullptr && curr->getValue() <= valueToInsert)
         {
             prev = curr;
             curr = curr->getNext();
         }
 
+        // found duplicate if the value at the insert index equals the value to add.
         if (prev != nullptr)
             isDuplicate = (prev->getValue() == valueToInsert);
 
+        // if not a duplicate
+        // insert a node at current interated 'index'
         if (!isDuplicate)
         {
-    //std::cout << "-------------------------------\n";
-    //std::cout << valueToInsert << '\n';
             Node* newNode {new Node(valueToInsert)};
 
             if (prev == nullptr)
             {
+                // at beginning of chain
                 newNode->setNext(headPtr);
                 headPtr = newNode;
             }
             else
             {
+                // within chain or at end of chain
                 prev->setNext(newNode);
                 newNode->setNext(curr);
             }
@@ -66,22 +84,12 @@ bool LinkedList::addNode(const std::string& valueToInsert)
         }
     }
 
-    // std::cout << "-------------------------------\n";
-    // std::vector<std::string> vList = toVector();
-//
-    // // loop through each value in the vector
-    // // assigning its data to the variable "node"
-    // int counter{0};
-    // for (auto node : vList)
-    // {
-        // // print the value of the next element
-        // std::cout << ++counter << ": " << node << '\n';
-    // }
-    // std::cout << "-------------------------------\n\n";
-
+    // if value is not a duplicate,
+    // it can be insertted
     return !isDuplicate;
 }
 
+// toVector -> vector<string>
 auto LinkedList::toVector() const -> std::vector<std::string>
 {
     std::vector<std::string> oVect;
