@@ -90,6 +90,10 @@ bool LinkedList::addNode(const std::string& valueToInsert)
 }
 
 // toVector -> vector<string>
+//
+// Iterate through the linkedlist nodes and convert
+// them to a vector that can then be iterator over
+// conveniently by the client program.
 auto LinkedList::toVector() const -> std::vector<std::string>
 {
     std::vector<std::string> oVect;
@@ -105,6 +109,9 @@ auto LinkedList::toVector() const -> std::vector<std::string>
     return oVect;
 }
 
+// getNumItems -> int
+//
+// return the number of items in the linked list
 int LinkedList::getNumItems() const
 {
     return numItems;

@@ -2,8 +2,10 @@
 // Author: Nolan Freeman Abbbott
 
 // PROGRAM DESCRIPTION:
-// --- x
-// --- x
+// --- Parse through a user specified file
+// --- displays the number of lines found, number
+// --- of unique lines found, and reorders them into
+// --- a sorted list, using a linked list ADT.
 
 #include <fstream> // ifstream | EOF
 #include <iostream> // getline() | cout
